@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../logo.svg';
+import Search from './Search';
 
 function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
   return (
-    <header>
+    <header className="header">
       <div className="header-content">
         <Link to="/" className="logo">
-          <img src={logo} alt="React Logo" className="logo-img" />
-          <span className="logo-text">React Tutorial</span>
+          <h1>React Tutorial</h1>
         </Link>
-        <div className="header-actions">
-          <button onClick={toggleDarkMode} className="theme-toggle">
-            {isDarkMode ? '☀' : '☾'}
-          </button>
+        <div className="header-right">
+          <Search />
+          <nav className="header-nav">
+            <Link to="/">Home</Link>
+            <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+              Docs
+            </a>
+            <a href="https://github.com/Raghaverma/react-tut" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </nav>
         </div>
       </div>
     </header>

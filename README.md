@@ -1,78 +1,83 @@
-# React Tutorial Project
+# React Tutorial Application
 
-An interactive learning platform for mastering React concepts with live code examples and hands-on practice.
+A modern, interactive React learning platform with a sleek dark theme interface. This application serves as a comprehensive guide to React, from basics to advanced concepts.
 
 ## Features
 
-- 📝 Interactive code editor with VS Code-like experience
-- 🎯 Hands-on practice with real-time feedback
-- 📚 Comprehensive coverage of React concepts
-- 🎨 Modern, clean UI design
-- 💡 Detailed explanations and best practices
-- ⚡ Live code execution
+- 📚 Comprehensive React tutorials
+- 🎯 Interactive code examples
+- 🌙 Modern dark theme UI
+- 📱 Responsive design
+- 🎨 Clean and intuitive navigation
 
-## Pages
+## Topics Covered
 
-1. **Home** - Introduction and navigation
-2. **Components** - Understanding React components
-3. **JSX** - Learning JSX syntax and rules
-4. **Props** - Working with component properties
-5. **State** - Managing component state
-6. **Events** - Handling user interactions
-7. **Effects** - Side effects and lifecycle
-8. **Context** - Global state management
-9. **Hooks** - Built-in and custom hooks
-10. **Performance** - Optimization techniques
-11. **Testing** - Writing tests for React apps
-12. **Deployment** - Deploying React applications
+### React Basics
+- Components
+- Props
+- State
+- Events
+- JSX
 
-## Interactive Features
+### Advanced Concepts
+- Hooks
+- Effects
+- Context
+- Refs
 
-Each page includes:
-- 🖥️ Live code editor with syntax highlighting
-- 📊 Line numbers for better code navigation
-- 🔄 Run and reset functionality
-- 📋 Copy code button
-- 🎯 Practice exercises
-- 💡 Code explanations
+### Tools & Best Practices
+- TypeScript
+- Testing
+- Performance
+- Deployment
+- CLI Tools
+- Package Management
 
 ## Getting Started
 
 1. Clone the repository:
-\`\`\`bash
-git clone [repository-url]
-\`\`\`
+```bash
+git clone <your-repo-url>
+```
 
 2. Install dependencies:
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 3. Start the development server:
-\`\`\`bash
+```bash
 npm start
-\`\`\`
+```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+The application will open in your default browser at `http://localhost:3000`.
 
 ## Technology Stack
 
-- React
-- React Router
-- Monaco Editor (VS Code-like editor)
-- CSS Modules for styling
+- React 18
+- React Router for navigation
+- React Icons for UI elements
+- Modern CSS with CSS Variables
+- Dark theme optimized for readability
+
+## Project Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── pages/         # Individual tutorial pages
+├── App.js         # Main application component
+├── App.css        # Global styles
+└── index.js       # Application entry point
+```
 
 ## Contributing
 
-1. Fork the repository
-2. Create your feature branch (\`git checkout -b feature/AmazingFeature\`)
-3. Commit your changes (\`git commit -m 'Add some AmazingFeature'\`)
-4. Push to the branch (\`git push origin feature/AmazingFeature\`)
-5. Open a Pull Request
+Feel free to submit issues and enhancement requests!
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
 

@@ -1,93 +1,111 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { 
+  FiHome, 
+  FiBox, 
+  FiCode, 
+  FiLayers, 
+  FiCpu, 
+  FiGitBranch, 
+  FiZap,
+  FiDatabase,
+  FiRefreshCw,
+  FiLink,
+  FiTool,
+  FiTerminal,
+  FiPackage,
+  FiServer,
+  FiCheckCircle
+} from 'react-icons/fi';
 
 function Sidebar() {
   const location = useLocation();
+  const [openSections, setOpenSections] = useState({
+    basics: true,
+    advanced: false,
+    tools: false
+  });
 
-  const isActive = (path) => {
-    return location.pathname === path;
+  const sections = {
+    basics: {
+      title: 'React Basics',
+      icon: <FiBox />,
+      pages: [
+        { path: '/', title: 'Home', icon: <FiHome /> },
+        { path: '/components', title: 'Components', icon: <FiCode /> },
+        { path: '/props', title: 'Props', icon: <FiLayers /> },
+        { path: '/state', title: 'State', icon: <FiDatabase /> },
+        { path: '/events', title: 'Events', icon: <FiZap /> },
+        { path: '/jsx', title: 'JSX', icon: <FiCode /> }
+      ]
+    },
+    advanced: {
+      title: 'Advanced Concepts',
+      icon: <FiCpu />,
+      pages: [
+        { path: '/hooks', title: 'Hooks', icon: <FiRefreshCw /> },
+        { path: '/effects', title: 'Effects', icon: <FiZap /> },
+        { path: '/context', title: 'Context', icon: <FiLink /> },
+        { path: '/refs', title: 'Refs', icon: <FiLink /> }
+      ]
+    },
+    tools: {
+      title: 'Tools & Best Practices',
+      icon: <FiTool />,
+      pages: [
+        { path: '/typescript', title: 'TypeScript', icon: <FiCode /> },
+        { path: '/testing', title: 'Testing', icon: <FiCheckCircle /> },
+        { path: '/performance', title: 'Performance', icon: <FiZap /> },
+        { path: '/deployment', title: 'Deployment', icon: <FiServer /> },
+        { path: '/cli', title: 'CLI Tools', icon: <FiTerminal /> },
+        { path: '/packages', title: 'Package Management', icon: <FiPackage /> }
+      ]
+    }
+  };
+
+  const toggleSection = (section) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
   };
 
   return (
-    <aside className="sidebar">
-      <nav>
-        <div className="nav-section">
-          <h3>Getting Started</h3>
-          <div className="nav-links">
-            <Link to="/" className={isActive('/') ? 'active' : ''}>
-              <span className="nav-icon">🏠</span>
-              <span className="nav-text">Home</span>
-            </Link>
-            <Link to="/jsx" className={isActive('/jsx') ? 'active' : ''}>
-              <span className="nav-icon">📝</span>
-              <span className="nav-text">JSX</span>
-            </Link>
-            <Link to="/components" className={isActive('/components') ? 'active' : ''}>
-              <span className="nav-icon">🧩</span>
-              <span className="nav-text">Components</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="nav-section">
-          <h3>Core Concepts</h3>
-          <div className="nav-links">
-            <Link to="/props" className={isActive('/props') ? 'active' : ''}>
-              <span className="nav-icon">📦</span>
-              <span className="nav-text">Props</span>
-            </Link>
-            <Link to="/state" className={isActive('/state') ? 'active' : ''}>
-              <span className="nav-icon">🔄</span>
-              <span className="nav-text">State</span>
-            </Link>
-            <Link to="/events" className={isActive('/events') ? 'active' : ''}>
-              <span className="nav-icon">🎯</span>
-              <span className="nav-text">Events</span>
-            </Link>
-            <Link to="/effects" className={isActive('/effects') ? 'active' : ''}>
-              <span className="nav-icon">⚡</span>
-              <span className="nav-text">Effects</span>
-            </Link>
-            <Link to="/context" className={isActive('/context') ? 'active' : ''}>
-              <span className="nav-icon">🌐</span>
-              <span className="nav-text">Context</span>
-            </Link>
-            <Link to="/refs" className={isActive('/refs') ? 'active' : ''}>
-              <span className="nav-icon">🔗</span>
-              <span className="nav-text">Refs</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="nav-section">
-          <h3>Advanced Topics</h3>
-          <div className="nav-links">
-            <Link to="/hooks" className={isActive('/hooks') ? 'active' : ''}>
-              <span className="nav-icon">🎣</span>
-              <span className="nav-text">Hooks</span>
-            </Link>
-            <Link to="/performance" className={isActive('/performance') ? 'active' : ''}>
-              <span className="nav-icon">⚡</span>
-              <span className="nav-text">Performance</span>
-            </Link>
-            <Link to="/testing" className={isActive('/testing') ? 'active' : ''}>
-              <span className="nav-icon">🧪</span>
-              <span className="nav-text">Testing</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="nav-section">
-          <h3>Tools & Deployment</h3>
-          <div className="nav-links">
-            <Link to="/deployment" className={isActive('/deployment') ? 'active' : ''}>
-              <span className="nav-icon">🚀</span>
-              <span className="nav-text">Deployment</span>
-            </Link>
-          </div>
-        </div>
-      </nav>
-    </aside>
+    <nav className="sidebar">
+      <ul className="sidebar-list">
+        {Object.entries(sections).map(([key, section]) => (
+          <li key={key} className="sidebar-section">
+            <div 
+              className="sidebar-section-header"
+              onClick={() => toggleSection(key)}
+            >
+              <div className="section-header-content">
+                {section.icon}
+                <span>{section.title}</span>
+              </div>
+              <span className={`dropdown-icon ${openSections[key] ? 'open' : ''}`}>
+                ▼
+              </span>
+            </div>
+            {openSections[key] && (
+              <ul className="sidebar-submenu">
+                {section.pages.map((page) => (
+                  <li key={page.path}>
+                    <Link
+                      to={page.path}
+                      className={`sidebar-link ${location.pathname === page.path ? 'active' : ''}`}
+                    >
+                      {page.icon}
+                      <span>{page.title}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
