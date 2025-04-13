@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   FiHome, 
@@ -18,50 +18,50 @@ import {
   FiCheckCircle
 } from 'react-icons/fi';
 
-function Sidebar() {
+const sections = {
+  basics: {
+    title: 'React Basics',
+    icon: <FiBox />,
+    pages: [
+      { path: '/', title: 'Home', icon: <FiHome /> },
+      { path: '/components', title: 'Components', icon: <FiCode /> },
+      { path: '/props', title: 'Props', icon: <FiLayers /> },
+      { path: '/state', title: 'State', icon: <FiDatabase /> },
+      { path: '/events', title: 'Events', icon: <FiZap /> },
+      { path: '/jsx', title: 'JSX', icon: <FiCode /> }
+    ]
+  },
+  advanced: {
+    title: 'Advanced Concepts',
+    icon: <FiCpu />,
+    pages: [
+      { path: '/hooks', title: 'Hooks', icon: <FiRefreshCw /> },
+      { path: '/effects', title: 'Effects', icon: <FiZap /> },
+      { path: '/context', title: 'Context', icon: <FiLink /> },
+      { path: '/refs', title: 'Refs', icon: <FiLink /> }
+    ]
+  },
+  tools: {
+    title: 'Tools & Best Practices',
+    icon: <FiTool />,
+    pages: [
+      { path: '/typescript', title: 'TypeScript', icon: <FiCode /> },
+      { path: '/testing', title: 'Testing', icon: <FiCheckCircle /> },
+      { path: '/performance', title: 'Performance', icon: <FiZap /> },
+      { path: '/deployment', title: 'Deployment', icon: <FiServer /> },
+      { path: '/cli', title: 'CLI Tools', icon: <FiTerminal /> },
+      { path: '/packages', title: 'Package Management', icon: <FiPackage /> }
+    ]
+  }
+};
+
+const Sidebar = () => {
   const location = useLocation();
   const [openSections, setOpenSections] = useState({
     basics: true,
     advanced: false,
     tools: false
   });
-
-  const sections = {
-    basics: {
-      title: 'React Basics',
-      icon: <FiBox />,
-      pages: [
-        { path: '/', title: 'Home', icon: <FiHome /> },
-        { path: '/components', title: 'Components', icon: <FiCode /> },
-        { path: '/props', title: 'Props', icon: <FiLayers /> },
-        { path: '/state', title: 'State', icon: <FiDatabase /> },
-        { path: '/events', title: 'Events', icon: <FiZap /> },
-        { path: '/jsx', title: 'JSX', icon: <FiCode /> }
-      ]
-    },
-    advanced: {
-      title: 'Advanced Concepts',
-      icon: <FiCpu />,
-      pages: [
-        { path: '/hooks', title: 'Hooks', icon: <FiRefreshCw /> },
-        { path: '/effects', title: 'Effects', icon: <FiZap /> },
-        { path: '/context', title: 'Context', icon: <FiLink /> },
-        { path: '/refs', title: 'Refs', icon: <FiLink /> }
-      ]
-    },
-    tools: {
-      title: 'Tools & Best Practices',
-      icon: <FiTool />,
-      pages: [
-        { path: '/typescript', title: 'TypeScript', icon: <FiCode /> },
-        { path: '/testing', title: 'Testing', icon: <FiCheckCircle /> },
-        { path: '/performance', title: 'Performance', icon: <FiZap /> },
-        { path: '/deployment', title: 'Deployment', icon: <FiServer /> },
-        { path: '/cli', title: 'CLI Tools', icon: <FiTerminal /> },
-        { path: '/packages', title: 'Package Management', icon: <FiPackage /> }
-      ]
-    }
-  };
 
   const toggleSection = (section) => {
     setOpenSections(prev => ({
@@ -107,6 +107,6 @@ function Sidebar() {
       </ul>
     </nav>
   );
-}
+};
 
-export default Sidebar; 
+export default memo(Sidebar); 

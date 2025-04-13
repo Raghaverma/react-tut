@@ -1,77 +1,71 @@
 import React, { useState } from 'react';
 
-const Quiz = ({ questions, onComplete }) => {
+const Quiz = ({ questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
-  const [showResults, setShowResults] = useState(false);
-  const [selectedAnswers, setSelectedAnswers] = useState({});
 
-  const handleAnswerSelect = (questionIndex, answerIndex) => {
-    setSelectedAnswers({
-      ...selectedAnswers,
-      [questionIndex]: answerIndex
-    });
+  const handleAnswerSelect = (answer) => {
+    setSelectedAnswer(answer);
   };
 
-  const handleSubmit = () => {
-    let newScore = 0;
-    questions.forEach((question, index) => {
-      if (selectedAnswers[index] === question.correctAnswer) {
-        newScore++;
-      }
-    });
-    setScore(newScore);
-    setShowResults(true);
-    if (onComplete) {
-      onComplete(newScore, questions.length);
+  const handleNext = () => {
+    if (selectedAnswer === questions[currentQuestion].correctAnswer) {
+      setScore(score + 1);
+    }
+
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedAnswer(null);
+    } else {
+      setShowResult(true);
     }
   };
 
-  const resetQuiz = () => {
+  const handleRetry = () => {
     setCurrentQuestion(0);
+    setSelectedAnswer(null);
+    setShowResult(false);
     setScore(0);
-    setShowResults(false);
-    setSelectedAnswers({});
   };
 
-  if (showResults) {
+  if (showResult) {
     return (
       <div className="quiz-results">
-        <h3>Quiz Results</h3>
-        <p>You scored {score} out of {questions.length}</p>
-        <div className="answers-review">
-          {questions.map((question, index) => (
-            <div key={index} className="question-review">
-              <p>{question.question}</p>
-              <p className={selectedAnswers[index] === question.correctAnswer ? 'correct' : 'incorrect'}>
-                Your answer: {question.answers[selectedAnswers[index]]}
-              </p>
-              {selectedAnswers[index] !== question.correctAnswer && (
-                <p className="correct-answer">
-                  Correct answer: {question.answers[question.correctAnswer]}
-                </p>
-              )}
-            </div>
-          ))}
+        <h3>Quiz Complete!</h3>
+        <p>Your score: {score} out of {questions.length}</p>
+        <div className="feedback">
+          {score === questions.length ? (
+            <p>Perfect score! Great job! 🎉</p>
+          ) : score >= questions.length * 0.7 ? (
+            <p>Well done! Keep practicing! 👍</p>
+          ) : (
+            <p>Keep learning and try again! 💪</p>
+          )}
         </div>
-        <button onClick={resetQuiz}>Try Again</button>
+        <button onClick={handleRetry} className="retry-button">
+          Try Again
+        </button>
       </div>
     );
   }
 
+  const question = questions[currentQuestion];
+
   return (
     <div className="quiz-container">
-      <h3>Test Your Knowledge</h3>
+      <div className="question-counter">
+        Question {currentQuestion + 1} of {questions.length}
+      </div>
       <div className="question">
-        <p>{questions[currentQuestion].question}</p>
+        <h3>{question.question}</h3>
         <div className="answers">
-          {questions[currentQuestion].answers.map((answer, index) => (
+          {question.answers.map((answer, index) => (
             <button
               key={index}
-              className={`answer-button ${
-                selectedAnswers[currentQuestion] === index ? 'selected' : ''
-              }`}
-              onClick={() => handleAnswerSelect(currentQuestion, index)}
+              onClick={() => handleAnswerSelect(answer)}
+              className={`answer-button ${selectedAnswer === answer ? 'selected' : ''}`}
             >
               {answer}
             </button>
@@ -79,18 +73,13 @@ const Quiz = ({ questions, onComplete }) => {
         </div>
       </div>
       <div className="quiz-navigation">
-        {currentQuestion > 0 && (
-          <button onClick={() => setCurrentQuestion(currentQuestion - 1)}>
-            Previous
-          </button>
-        )}
-        {currentQuestion < questions.length - 1 ? (
-          <button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
-            Next
-          </button>
-        ) : (
-          <button onClick={handleSubmit}>Submit</button>
-        )}
+        <button
+          onClick={handleNext}
+          disabled={!selectedAnswer}
+          className="next-button"
+        >
+          {currentQuestion + 1 === questions.length ? 'Finish' : 'Next'}
+        </button>
       </div>
     </div>
   );

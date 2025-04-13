@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import IDE from '../components/IDE';
 import CodeBlock from '../components/CodeBlock';
 import CodeExplanation from '../components/CodeExplanation';
+import CodeEditor from '../components/CodeEditor';
+import Quiz from '../components/Quiz';
 
 function Props() {
   const propsExample = `// UserProfile.jsx
@@ -54,13 +56,115 @@ function App() {
   );
 }`;
 
+  const propTypesExample = `import PropTypes from 'prop-types';
+
+function UserCard({ name, age, email }) {
   return (
-    <div className="content">
-      <h1>Props in React</h1>
-      <p className="intro">
-        Props (short for properties) are the way React components communicate with each other.
-        They allow you to pass data from parent components to child components.
-      </p>
+    <div className="user-card">
+      <h2>{name}</h2>
+      <p>Age: {age}</p>
+      <p>Email: {email}</p>
+    </div>
+  );
+}
+
+UserCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  email: PropTypes.string.isRequired
+};`;
+
+  const quizQuestions = [
+    {
+      question: "What are props in React?",
+      answers: [
+        "Internal component state",
+        "Arguments passed to components",
+        "CSS styles",
+        "JavaScript functions"
+      ],
+      correctAnswer: "Arguments passed to components"
+    },
+    {
+      question: "How do you pass a prop to a component?",
+      answers: [
+        "<Component prop={value} />",
+        "<Component prop='value' />",
+        "Both A and B are correct",
+        "Component(prop=value)"
+      ],
+      correctAnswer: "Both A and B are correct"
+    },
+    {
+      question: "What is prop destructuring?",
+      answers: [
+        "Breaking down props object into individual variables",
+        "Removing props from a component",
+        "Combining multiple props into one",
+        "Converting props to state"
+      ],
+      correctAnswer: "Breaking down props object into individual variables"
+    },
+    {
+      question: "Which is the correct way to define default props?",
+      answers: [
+        "Component.defaultProps = { prop: value }",
+        "default Component.props = { prop: value }",
+        "props.default = { prop: value }",
+        "Component.props = { prop: value }"
+      ],
+      correctAnswer: "Component.defaultProps = { prop: value }"
+    }
+  ];
+
+  return (
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">Props in React</h1>
+        <p className="page-description">
+          Learn how to pass data between components using props and understand prop types.
+        </p>
+      </header>
+
+      <section className="section">
+        <h2>Basic Props Usage</h2>
+        <p>
+          Props are arguments passed to React components. Try modifying the props in this example:
+        </p>
+        <CodeEditor
+          initialCode={propsExample}
+          language="jsx"
+        />
+      </section>
+
+      <section className="section">
+        <h2>PropTypes</h2>
+        <p>
+          PropTypes help you catch bugs by validating the types of props being passed:
+        </p>
+        <CodeEditor
+          initialCode={propTypesExample}
+          language="jsx"
+        />
+      </section>
+
+      <section className="section">
+        <h2>Test Your Knowledge</h2>
+        <p>
+          Take this quiz to check your understanding of React props:
+        </p>
+        <Quiz questions={quizQuestions} />
+      </section>
+
+      <section className="section">
+        <h2>Key Takeaways</h2>
+        <ul className="takeaways-list">
+          <li>Props are read-only and cannot be modified by a component</li>
+          <li>Props can be of any type: strings, numbers, objects, functions</li>
+          <li>Use PropTypes for runtime type checking</li>
+          <li>Props make your components reusable and dynamic</li>
+        </ul>
+      </section>
 
       <div className="section">
         <h2>Using Props</h2>

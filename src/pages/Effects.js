@@ -3,204 +3,115 @@ import { Link } from 'react-router-dom';
 import IDE from '../components/IDE';
 import CodeBlock from '../components/CodeBlock';
 import CodeExplanation from '../components/CodeExplanation';
+import CodeEditor from '../components/CodeEditor';
+import Quiz from '../components/Quiz';
+import { basicEffect, dataFetching } from './examples';
 
-function Effects() {
-  const effectsExample = `function DataFetcher() {
-  const [data, setData] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-  const [count, setCount] = React.useState(0);
+const quizQuestions = [
+  {
+    question: "What is the purpose of useEffect?",
+    answers: [
+      "To handle side effects in components",
+      "To create new components",
+      "To style components",
+      "To manage state"
+    ],
+    correctAnswer: "To handle side effects in components"
+  },
+  {
+    question: "When does useEffect run?",
+    answers: [
+      "Only once when the component mounts",
+      "Every time the component renders",
+      "When specified dependencies change",
+      "All of the above, depending on the dependency array"
+    ],
+    correctAnswer: "All of the above, depending on the dependency array"
+  },
+  {
+    question: "What is the cleanup function in useEffect used for?",
+    answers: [
+      "To clean up side effects before the component unmounts or re-renders",
+      "To clear the component's state",
+      "To remove the component from the DOM",
+      "To reset the dependency array"
+    ],
+    correctAnswer: "To clean up side effects before the component unmounts or re-renders"
+  },
+  {
+    question: "What happens if you omit the dependency array in useEffect?",
+    answers: [
+      "The effect runs only once",
+      "The effect never runs",
+      "The effect runs after every render",
+      "The effect runs only when the component unmounts"
+    ],
+    correctAnswer: "The effect runs after every render"
+  },
+  {
+    question: "Which is the correct way to fetch data with useEffect?",
+    answers: [
+      "useEffect(async () => { await fetch() }, [])",
+      "useEffect(() => { async function fetchData() { await fetch() }; fetchData(); }, [])",
+      "useEffect(() => { fetch().then() }, [])",
+      "Both B and C are correct"
+    ],
+    correctAnswer: "Both B and C are correct"
+  }
+];
 
-  // Effect for data fetching
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        // Simulating API call
-        const response = await new Promise(resolve => 
-          setTimeout(() => resolve({ data: 'Hello from API!' }), 1500)
-        );
-        setData(response.data);
-        setError(null);
-      } catch (err) {
-        setError('Failed to fetch data');
-        setData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-
-    // Cleanup function
-    return () => {
-      // Cancel any pending requests here
-      console.log('Cleanup: Component unmounted');
-    };
-  }, []); // Empty dependency array = run once on mount
-
-  // Effect with dependencies
-  React.useEffect(() => {
-    document.title = \`Clicked \${count} times\`;
-    
-    // Cleanup is optional
-    return () => {
-      document.title = 'React App';
-    };
-  }, [count]); // Run when count changes
-
+const Effects = () => {
   return (
-    <div className="data-fetcher">
-      <div className="status">
-        {loading && <p>Loading...</p>}
-        {error && <p className="error">{error}</p>}
-        {data && <p className="data">{data}</p>}
-      </div>
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">Effects in React</h1>
+        <p className="page-description">
+          Learn how to handle side effects in React components using the useEffect hook.
+        </p>
+      </header>
 
-      <div className="counter">
-        <p>Count: {count}</p>
-        <button onClick={() => setCount(c => c + 1)}>
-          Increment
-        </button>
-      </div>
+      <section className="section">
+        <h2>Basic Effect Usage</h2>
+        <p>
+          Here's an example of using useEffect to manage a component's lifecycle:
+        </p>
+        <CodeEditor
+          initialCode={basicEffect}
+          language="jsx"
+        />
+      </section>
+
+      <section className="section">
+        <h2>Data Fetching with useEffect</h2>
+        <p>
+          A common use case for useEffect is fetching data from an API:
+        </p>
+        <CodeEditor
+          initialCode={dataFetching}
+          language="jsx"
+        />
+      </section>
+
+      <section className="section">
+        <h2>Test Your Knowledge</h2>
+        <p>
+          Take this quiz to check your understanding of React Effects:
+        </p>
+        <Quiz questions={quizQuestions} />
+      </section>
+
+      <section className="section">
+        <h2>Key Takeaways</h2>
+        <ul className="takeaways-list">
+          <li>Effects handle side effects like data fetching, subscriptions, and DOM manipulation</li>
+          <li>The dependency array controls when effects run</li>
+          <li>Cleanup functions prevent memory leaks</li>
+          <li>Effects run after every render unless optimized</li>
+          <li>Async operations need special handling in effects</li>
+        </ul>
+      </section>
     </div>
   );
-}`;
-
-  return (
-    <div className="content">
-      <h1>Effects in React</h1>
-      <p className="intro">
-        Effects let you perform side effects in function components. Side effects include
-        data fetching, subscriptions, manual DOM manipulations, and other operations that
-        affect things outside the component.
-      </p>
-
-      <div className="section">
-        <h2>Using useEffect</h2>
-        <p>
-          The useEffect Hook lets you tell React that your component needs to do something
-          after render. React will remember the function you passed and call it later after
-          performing the DOM updates.
-        </p>
-
-        <CodeBlock
-          fileName="Timer.jsx"
-          code={`function Timer() {
-  const [count, setCount] = React.useState(0);
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setCount(c => c + 1);
-    }, 1000);
-
-    // Cleanup function
-    return () => clearInterval(timer);
-  }, []); // Empty dependency array
-
-  return <h1>Count: {count}</h1>;
-}`}
-        />
-
-        <CodeExplanation
-          title="Code Explanation:"
-          items={[
-            {
-              code: "React.useEffect(() => { ... }, [])",
-              explanation: "Effect runs after mount and cleanup runs before unmount"
-            },
-            {
-              code: "return () => clearInterval(timer)",
-              explanation: "Cleanup function prevents memory leaks by clearing the interval"
-            }
-          ]}
-        />
-      </div>
-
-      <div className="section">
-        <h2>Try It Yourself</h2>
-        <p>
-          Create a component that demonstrates different uses of effects:
-        </p>
-        <ul>
-          <li>Data fetching with loading and error states</li>
-          <li>Effects with cleanup functions</li>
-          <li>Effects with dependencies</li>
-          <li>Document title updates</li>
-        </ul>
-
-        <IDE
-          fileName="DataFetcher.jsx"
-          initialCode={effectsExample}
-          height="600px"
-          instructions="Create a component that fetches data and updates the document title, demonstrating different aspects of useEffect including cleanup and dependencies."
-        />
-      </div>
-
-      <div className="section">
-        <h2>Effect Dependencies</h2>
-        <p>
-          The dependency array controls when the effect runs:
-        </p>
-
-        <CodeBlock
-          fileName="Dependencies.jsx"
-          code={`function SearchResults({ query }) {
-  const [results, setResults] = React.useState([]);
-
-  React.useEffect(() => {
-    // Runs on mount AND when query changes
-    const search = async () => {
-      const data = await fetchResults(query);
-      setResults(data);
-    };
-    search();
-  }, [query]); // Dependency array with query
-
-  return (
-    <ul>
-      {results.map(result => (
-        <li key={result.id}>{result.title}</li>
-      ))}
-    </ul>
-  );
-}`}
-        />
-
-        <CodeExplanation
-          title="Code Explanation:"
-          items={[
-            {
-              code: "}, [query])",
-              explanation: "Effect runs when query prop changes"
-            },
-            {
-              code: "const search = async () => { ... }",
-              explanation: "Async function defined inside effect to handle data fetching"
-            }
-          ]}
-        />
-      </div>
-
-      <div className="section">
-        <h2>Effect Best Practices</h2>
-        <ul>
-          <li>Always include cleanup functions when needed</li>
-          <li>Specify all required dependencies</li>
-          <li>Keep effects focused on a single concern</li>
-          <li>Avoid infinite effect loops</li>
-          <li>Consider using useCallback for effect dependencies</li>
-        </ul>
-      </div>
-
-      <div className="section">
-        <h2>Next Steps</h2>
-        <p>
-          Learn about sharing data between components with <Link to="/context">Context</Link>.
-        </p>
-      </div>
-    </div>
-  );
-}
+};
 
 export default Effects; 

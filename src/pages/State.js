@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import IDE from '../components/IDE';
 import CodeBlock from '../components/CodeBlock';
 import CodeExplanation from '../components/CodeExplanation';
+import CodeEditor from '../components/CodeEditor';
+import Quiz from '../components/Quiz';
 
 function State() {
   const counterExample = `function Counter() {
@@ -18,13 +20,125 @@ function State() {
   );
 }`;
 
+  const complexStateExample = `function TodoList() {
+  const [todos, setTodos] = React.useState([]);
+  const [input, setInput] = React.useState('');
+
+  const addTodo = () => {
+    if (input.trim()) {
+      setTodos([...todos, input.trim()]);
+      setInput('');
+    }
+  };
+
   return (
-    <div className="content">
-      <h1>State in React</h1>
-      <p className="intro">
-        State allows React components to change their output over time in response
-        to user actions, network responses, and anything else.
-      </p>
+    <div>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Add a todo"
+      />
+      <button onClick={addTodo}>Add</button>
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}`;
+
+  const quizQuestions = [
+    {
+      question: "What is React state used for?",
+      answers: [
+        "Storing component data that can change over time",
+        "Passing data between components",
+        "Styling components",
+        "Making API calls"
+      ],
+      correctAnswer: "Storing component data that can change over time"
+    },
+    {
+      question: "Which hook is used to manage state in functional components?",
+      answers: [
+        "useEffect",
+        "useState",
+        "useContext",
+        "useReducer"
+      ],
+      correctAnswer: "useState"
+    },
+    {
+      question: "What is the correct way to update state?",
+      answers: [
+        "Directly modify the state variable",
+        "Use the setState function from useState",
+        "Use this.state = newValue",
+        "Reassign the state variable"
+      ],
+      correctAnswer: "Use the setState function from useState"
+    },
+    {
+      question: "What happens when state changes?",
+      answers: [
+        "Nothing happens automatically",
+        "The component re-renders",
+        "The application crashes",
+        "The state resets to initial value"
+      ],
+      correctAnswer: "The component re-renders"
+    }
+  ];
+
+  return (
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">State in React</h1>
+        <p className="page-description">
+          Learn how to manage component state in React using hooks and understand state updates.
+        </p>
+      </header>
+
+      <section className="section">
+        <h2>Basic State Usage</h2>
+        <p>
+          Here's a simple counter component using state. Try running it and see how it works:
+        </p>
+        <CodeEditor
+          initialCode={counterExample}
+          language="jsx"
+        />
+      </section>
+
+      <section className="section">
+        <h2>Complex State Management</h2>
+        <p>
+          This example shows how to manage more complex state with arrays and multiple state variables:
+        </p>
+        <CodeEditor
+          initialCode={complexStateExample}
+          language="jsx"
+        />
+      </section>
+
+      <section className="section">
+        <h2>Test Your Knowledge</h2>
+        <p>
+          Take this quiz to check your understanding of React state:
+        </p>
+        <Quiz questions={quizQuestions} />
+      </section>
+
+      <section className="section">
+        <h2>Key Takeaways</h2>
+        <ul className="takeaways-list">
+          <li>State is used for data that changes over time</li>
+          <li>Always use setState to update state values</li>
+          <li>State updates may be asynchronous</li>
+          <li>Each component can have its own state</li>
+        </ul>
+      </section>
 
       <div className="section">
         <h2>Using useState Hook</h2>
@@ -66,25 +180,6 @@ function Counter() {
                 "Updates the state by calling setCount with the new value",
             },
           ]}
-        />
-      </div>
-
-      <div className="section">
-        <h2>Try It Yourself</h2>
-        <p>
-          Create a counter component that:
-        </p>
-        <ul>
-          <li>Displays the current count</li>
-          <li>Has buttons to increment and decrement</li>
-          <li>Uses the useState hook to manage state</li>
-        </ul>
-
-        <IDE
-          initialCode={counterExample}
-          fileName="Counter.jsx"
-          height="300px"
-          instructions="Implement a counter component with increment and decrement functionality using the useState hook."
         />
       </div>
 

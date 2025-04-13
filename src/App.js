@@ -1,26 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-
-// Import pages
-import Home from './pages/Home';
-import Components from './pages/Components';
-import Props from './pages/Props';
-import State from './pages/State';
-import Events from './pages/Events';
-import JSX from './pages/JSX';
-import Hooks from './pages/Hooks';
-import Effects from './pages/Effects';
-import Context from './pages/Context';
-import Refs from './pages/Refs';
-import TypeScript from './pages/TypeScript';
-import Testing from './pages/Testing';
-import Performance from './pages/Performance';
-import Deployment from './pages/Deployment';
-import CLI from './pages/CLI';
-import Packages from './pages/Packages';
 import './App.css';
+
+// Lazy load all pages
+const Home = lazy(() => import('./pages/Home'));
+const Components = lazy(() => import('./pages/Components'));
+const Props = lazy(() => import('./pages/Props'));
+const State = lazy(() => import('./pages/State'));
+const Events = lazy(() => import('./pages/Events'));
+const JSX = lazy(() => import('./pages/JSX'));
+const Hooks = lazy(() => import('./pages/Hooks'));
+const Effects = lazy(() => import('./pages/Effects'));
+const Context = lazy(() => import('./pages/Context'));
+const Refs = lazy(() => import('./pages/Refs'));
+const TypeScript = lazy(() => import('./pages/TypeScript'));
+const Testing = lazy(() => import('./pages/Testing'));
+const Performance = lazy(() => import('./pages/Performance'));
+const Deployment = lazy(() => import('./pages/Deployment'));
+const CLI = lazy(() => import('./pages/CLI'));
+const Packages = lazy(() => import('./pages/Packages'));
+
+// Loading component for Suspense fallback
+const LoadingPage = () => (
+  <div className="loading-container">
+    <div className="loading-spinner"></div>
+  </div>
+);
 
 function App() {
   // Set dark mode by default
@@ -36,24 +43,26 @@ function App() {
           <Sidebar />
           <div className="content-wrapper">
             <main className="content">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/components" element={<Components />} />
-                <Route path="/props" element={<Props />} />
-                <Route path="/state" element={<State />} />
-                <Route path="/events" element={<Events />} />
-                <Route path="/jsx" element={<JSX />} />
-                <Route path="/hooks" element={<Hooks />} />
-                <Route path="/effects" element={<Effects />} />
-                <Route path="/context" element={<Context />} />
-                <Route path="/refs" element={<Refs />} />
-                <Route path="/typescript" element={<TypeScript />} />
-                <Route path="/testing" element={<Testing />} />
-                <Route path="/performance" element={<Performance />} />
-                <Route path="/deployment" element={<Deployment />} />
-                <Route path="/cli" element={<CLI />} />
-                <Route path="/packages" element={<Packages />} />
-              </Routes>
+              <Suspense fallback={<LoadingPage />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/components" element={<Components />} />
+                  <Route path="/props" element={<Props />} />
+                  <Route path="/state" element={<State />} />
+                  <Route path="/events" element={<Events />} />
+                  <Route path="/jsx" element={<JSX />} />
+                  <Route path="/hooks" element={<Hooks />} />
+                  <Route path="/effects" element={<Effects />} />
+                  <Route path="/context" element={<Context />} />
+                  <Route path="/refs" element={<Refs />} />
+                  <Route path="/typescript" element={<TypeScript />} />
+                  <Route path="/testing" element={<Testing />} />
+                  <Route path="/performance" element={<Performance />} />
+                  <Route path="/deployment" element={<Deployment />} />
+                  <Route path="/cli" element={<CLI />} />
+                  <Route path="/packages" element={<Packages />} />
+                </Routes>
+              </Suspense>
             </main>
           </div>
         </div>

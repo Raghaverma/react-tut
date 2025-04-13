@@ -1,191 +1,194 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import IDE from '../components/IDE';
-import CodeBlock from '../components/CodeBlock';
-import CodeExplanation from '../components/CodeExplanation';
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import IDE from '../components/IDE';
+// import CodeBlock from '../components/CodeBlock';
+// import CodeExplanation from '../components/CodeExplanation';
+// import CodeEditor from '../components/CodeEditor';
+// import Quiz from '../components/Quiz';
 
-function Context() {
-  const contextExample = `// ThemeContext.js
-const ThemeContext = React.createContext({
-  theme: 'light',
-  toggleTheme: () => {}
-});
+// const Context = () => {
+//   const contextExample = `// Create a context
+// const ThemeContext = React.createContext('light');
 
-// ThemeProvider.jsx
-function ThemeProvider({ children }) {
-  const [theme, setTheme] = React.useState('light');
+// // Provider component
+// function ThemeProvider({ children }) {
+//   const [theme, setTheme] = React.useState('light');
 
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
+//   const toggleTheme = () => {
+//     setTheme(prev => prev === 'light' ? 'dark' : 'light');
+//   };
 
-  const value = {
-    theme,
-    toggleTheme
-  };
+//   return (
+//     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+//       {children}
+//     </ThemeContext.Provider>
+//   );
+// }
 
-  return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
-
-// ThemedButton.jsx
-function ThemedButton() {
-  const { theme, toggleTheme } = React.useContext(ThemeContext);
+// // Consumer component
+// function ThemedButton() {
+//   const { theme, toggleTheme } = React.useContext(ThemeContext);
   
-  return (
-    <button
-      onClick={toggleTheme}
-      style={{
-        backgroundColor: theme === 'light' ? '#ffffff' : '#333333',
-        color: theme === 'light' ? '#333333' : '#ffffff',
-        padding: '10px 20px',
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-        cursor: 'pointer'
-      }}
-    >
-      Current theme: {theme}
-    </button>
-  );
-}
+//   return (
+//     <button
+//       onClick={toggleTheme}
+//       style={{
+//         background: theme === 'light' ? '#fff' : '#333',
+//         color: theme === 'light' ? '#333' : '#fff',
+//         padding: '8px 16px',
+//         border: '1px solid #ccc',
+//         borderRadius: '4px'
+//       }}
+//     >
+//       Current theme: {theme}
+//     </button>
+//   );
+// }
 
-// App.jsx
-function App() {
-  return (
-    <ThemeProvider>
-      <div style={{ padding: '20px' }}>
-        <h1>Theme Switcher</h1>
-        <ThemedButton />
-      </div>
-    </ThemeProvider>
-  );
-}`;
+// // App component
+// function App() {
+//   return (
+//     <ThemeProvider>
+//       <div>
+//         <h1>Theme Switcher</h1>
+//         <ThemedButton />
+//       </div>
+//     </ThemeProvider>
+//   );
+// }
 
-  return (
-    <div className="content">
-      <h1>Context in React</h1>
-      <p className="intro">
-        Context provides a way to pass data through the component tree without having to
-        pass props manually at every level. It's designed to share data that can be
-        considered "global" for a tree of React components.
-      </p>
+// const multipleContextsExample = `// Create contexts
+// const UserContext = React.createContext();
+// const ThemeContext = React.createContext();
 
-      <div className="section">
-        <h2>Creating Context</h2>
-        <p>
-          Context is created using React.createContext and includes a Provider and Consumer.
-          The Provider allows child components to subscribe to context changes.
-        </p>
+// function App() {
+//   const [user, setUser] = React.useState({ name: 'John' });
+//   const [theme, setTheme] = React.useState('light');
 
-        <CodeBlock
-          fileName="UserContext.jsx"
-          code={`const UserContext = React.createContext({
-  user: null,
-  setUser: () => {}
-});
+//   return (
+//     <UserContext.Provider value={user}>
+//       <ThemeContext.Provider value={theme}>
+//         <Layout />
+//       </ThemeContext.Provider>
+//     </UserContext.Provider>
+//   );
+// }
 
-function UserProvider({ children }) {
-  const [user, setUser] = React.useState(null);
-  
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      {children}
-    </UserContext.Provider>
-  );
-}`}
-        />
+// function Layout() {
+//   const user = React.useContext(UserContext);
+//   const theme = React.useContext(ThemeContext);
 
-        <CodeExplanation
-          title="Code Explanation:"
-          items={[
-            {
-              code: "React.createContext(defaultValue)",
-              explanation: "Creates a Context object with an optional default value"
-            },
-            {
-              code: "<UserContext.Provider value={...}>",
-              explanation: "Provides the context value to child components"
-            }
-          ]}
-        />
-      </div>
+//   return (
+//     <div className={\`layout \${theme}\`}>
+//       <h1>Welcome, {user.name}!</h1>
+//     </div>
+//   );
+// }`;
 
-      <div className="section">
-        <h2>Using Context</h2>
-        <p>
-          Components can consume context using the useContext hook or Context.Consumer:
-        </p>
+//   const quizQuestions = [
+//     {
+//       question: "What problem does Context solve in React?",
+//       answers: [
+//         "Prop drilling",
+//         "Component styling",
+//         "State management",
+//         "Event handling"
+//       ],
+//       correctAnswer: "Prop drilling"
+//     },
+//     {
+//       question: "What are the two main parts of Context?",
+//       answers: [
+//         "Provider and Consumer",
+//         "State and Props",
+//         "Actions and Reducers",
+//         "Model and View"
+//       ],
+//       correctAnswer: "Provider and Consumer"
+//     },
+//     {
+//       question: "When should you use Context?",
+//       answers: [
+//         "For global state that needs to be accessed by many components",
+//         "For passing props to immediate children",
+//         "For styling components",
+//         "For handling form submissions"
+//       ],
+//       correctAnswer: "For global state that needs to be accessed by many components"
+//     },
+//     {
+//       question: "What hook is used to consume context in functional components?",
+//       answers: [
+//         "useContext",
+//         "useState",
+//         "useEffect",
+//         "useReducer"
+//       ],
+//       correctAnswer: "useContext"
+//     },
+//     {
+//       question: "What happens to components that consume context when the context value changes?",
+//       answers: [
+//         "They re-render with the new value",
+//         "Nothing happens automatically",
+//         "They unmount and remount",
+//         "They throw an error"
+//       ],
+//       correctAnswer: "They re-render with the new value"
+//     }
+//   ];
 
-        <CodeBlock
-          fileName="UserProfile.jsx"
-          code={`function UserProfile() {
-  const { user, setUser } = React.useContext(UserContext);
+//   return (
+//     <div className="page-container">
+//       <header className="page-header">
+//         <h1 className="page-title">Context in React</h1>
+//         <p className="page-description">
+//           Learn how to share state between components without prop drilling using React Context.
+//         </p>
+//       </header>
 
-  if (!user) {
-    return <button onClick={() => setUser({ name: 'John' })}>Log in</button>;
-  }
+//       <section className="section">
+//         <h2>Basic Context Usage</h2>
+//         <p>
+//           Here's an example of creating and using a theme context:
+//         </p>
+//         <CodeEditor
+//           initialCode={contextExample}
+//           language="jsx"
+//         />
+//       </section>
 
-  return <div>Welcome, {user.name}!</div>;
-}`}
-        />
+//       <section className="section">
+//         <h2>Multiple Contexts</h2>
+//         <p>
+//           You can use multiple contexts in your application:
+//         </p>
+//         <CodeEditor
+//           initialCode={multipleContextsExample}
+//           language="jsx"
+//         />
+//       </section>
 
-        <CodeExplanation
-          title="Code Explanation:"
-          items={[
-            {
-              code: "const { user, setUser } = React.useContext(UserContext)",
-              explanation: "Subscribes to context changes using the useContext hook"
-            },
-            {
-              code: "setUser({ name: 'John' })",
-              explanation: "Updates the context value, triggering re-renders of consuming components"
-            }
-          ]}
-        />
-      </div>
+//       <section className="section">
+//         <h2>Test Your Knowledge</h2>
+//         <p>
+//           Take this quiz to check your understanding of React Context:
+//         </p>
+//         <Quiz questions={quizQuestions} />
+//       </section>
 
-      <div className="section">
-        <h2>Try It Yourself</h2>
-        <p>
-          Create a theme switcher using Context:
-        </p>
-        <ul>
-          <li>Create a ThemeContext</li>
-          <li>Implement a ThemeProvider with toggle functionality</li>
-          <li>Create a themed button that uses the context</li>
-          <li>Apply the theme to your components</li>
-        </ul>
+//       <section className="section">
+//         <h2>Key Takeaways</h2>
+//         <ul className="takeaways-list">
+//           <li>Context provides a way to pass data through the component tree without prop drilling</li>
+//           <li>Use Context for global state that many components need</li>
+//           <li>Context changes trigger re-renders of consuming components</li>
+//           <li>Multiple contexts can be used together</li>
+//           <li>Consider performance implications when using Context</li>
+//         </ul>
+//       </section>
+//     </div>
+//   );
+// };
 
-        <IDE
-          fileName="ThemeContext.jsx"
-          initialCode={contextExample}
-          height="600px"
-          instructions="Implement a theme switcher using Context that allows components to toggle between light and dark themes."
-        />
-      </div>
-
-      <div className="section">
-        <h2>Context Best Practices</h2>
-        <ul>
-          <li>Use Context for truly global data (theme, user auth, preferences)</li>
-          <li>Keep context providers as close as possible to consuming components</li>
-          <li>Split contexts by concern to avoid unnecessary re-renders</li>
-          <li>Consider performance implications of context changes</li>
-          <li>Provide meaningful default values</li>
-        </ul>
-      </div>
-
-      <div className="section">
-        <h2>Next Steps</h2>
-        <p>
-          Explore React's built-in hooks and learn to create custom hooks in the <Link to="/hooks">Hooks</Link> section.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-export default Context; 
+// export default Context;
