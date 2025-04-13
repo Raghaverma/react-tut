@@ -9,6 +9,8 @@ A modern, interactive React learning platform with a sleek dark theme interface.
 - 🌙 Modern dark theme UI
 - 📱 Responsive design
 - 🎨 Clean and intuitive navigation
+- 💻 Live code editor integration
+- 📝 Interactive quizzes
 
 ## Topics Covered
 
@@ -37,7 +39,7 @@ A modern, interactive React learning platform with a sleek dark theme interface.
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Raghaverma/react-tut.git
 ```
 
 2. Install dependencies:
@@ -59,17 +61,32 @@ The application will open in your default browser at `http://localhost:3000`.
 - React Icons for UI elements
 - Modern CSS with CSS Variables
 - Dark theme optimized for readability
+- Monaco Editor for code editing
+- Interactive quiz system
 
 ## Project Structure
 
 ```
 src/
 ├── components/     # Reusable UI components
+│   ├── CodeEditor.js  # Interactive code editor
+│   ├── Quiz.js        # Quiz component
+│   └── ...           # Other components
 ├── pages/         # Individual tutorial pages
+│   ├── examples.js   # Code examples
+│   └── ...          # Tutorial pages
 ├── App.js         # Main application component
 ├── App.css        # Global styles
 └── index.js       # Application entry point
 ```
+
+## Recent Updates
+
+- Added interactive code editor component
+- Implemented quiz system for self-assessment
+- Separated code examples into dedicated file
+- Enhanced dark theme implementation
+- Improved code organization and maintainability
 
 ## Contributing
 
