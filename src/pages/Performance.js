@@ -79,15 +79,15 @@ function App() {
 }`;
 
   return (
-    <div className="content">
-      <h1>Performance in React</h1>
-      <p className="intro">
-        Performance optimization in React involves preventing unnecessary re-renders,
-        memoizing expensive calculations, and implementing code-splitting. These
-        techniques help create faster and more responsive applications.
-      </p>
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">Performance in React</h1>
+        <p className="page-description">
+          Learn how to optimize your React applications for better performance and user experience.
+        </p>
+      </header>
 
-      <div className="section">
+      <section className="section">
         <h2>React.memo</h2>
         <p>
           Use React.memo to prevent unnecessary re-renders of function components:
@@ -122,9 +122,9 @@ function App() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>useMemo and useCallback</h2>
         <p>
           Memoize expensive calculations and callbacks to optimize performance:
@@ -172,9 +172,9 @@ function App() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Try It Yourself</h2>
         <p>
           Implement performance optimizations in a list component:
@@ -192,9 +192,9 @@ function App() {
           height="600px"
           instructions="Create a performant list component that demonstrates the use of React.memo, useMemo, and useCallback to prevent unnecessary re-renders."
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Code Splitting</h2>
         <p>
           Split your code into smaller chunks to improve initial load time:
@@ -233,9 +233,9 @@ function App() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Performance Best Practices</h2>
         <ul>
           <li>Use production builds for deployment</li>
@@ -245,14 +245,14 @@ function App() {
           <li>Optimize images and other assets</li>
           <li>Implement proper error boundaries</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Next Steps</h2>
         <p>
           Learn how to write tests for your React components in the <Link to="/testing">Testing</Link> section.
         </p>
-      </div>
+      </section>
     </div>
   );
 }

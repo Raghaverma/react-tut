@@ -60,14 +60,15 @@ function Events() {
 }`;
 
   return (
-    <div className="content">
-      <h1>Events in React</h1>
-      <p className="intro">
-        React events are named using camelCase and passed as props to elements. They provide
-        a consistent way to handle user interactions across different browsers.
-      </p>
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">Events in React</h1>
+        <p className="page-description">
+          Learn how to handle user interactions and events in React components.
+        </p>
+      </header>
 
-      <div className="section">
+      <section className="section">
         <h2>Handling Events</h2>
         <p>
           Event handlers in React are similar to handling events in HTML, but with some
@@ -103,9 +104,9 @@ function Events() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Try It Yourself</h2>
         <p>
           Create a form component that handles various events:
@@ -123,9 +124,9 @@ function Events() {
           height="500px"
           instructions="Create a form component that demonstrates different types of event handling in React, including form events, input changes, and mouse events."
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Common Events</h2>
         <p>
           React supports all standard DOM events. Here are some commonly used ones:
@@ -171,9 +172,9 @@ function Events() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Event Best Practices</h2>
         <ul>
           <li>Use descriptive handler names (handleClick, handleSubmit)</li>
@@ -182,14 +183,14 @@ function Events() {
           <li>Use event delegation when handling many similar events</li>
           <li>Always handle potential errors in event handlers</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Next Steps</h2>
         <p>
           Learn about managing side effects with <Link to="/effects">Effects</Link> in React.
         </p>
-      </div>
+      </section>
     </div>
   );
 }

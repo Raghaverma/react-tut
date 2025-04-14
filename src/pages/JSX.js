@@ -30,14 +30,15 @@ function JSX() {
 }`;
 
   return (
-    <div className="content">
-      <h1>JSX in React</h1>
-      <p className="intro">
-        JSX is a syntax extension for JavaScript that lets you write HTML-like code in your
-        JavaScript files. It makes writing React components more intuitive and readable.
-      </p>
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">JSX in React</h1>
+        <p className="page-description">
+          Learn how to write JSX, the syntax extension for JavaScript that makes React components easy to write.
+        </p>
+      </header>
 
-      <div className="section">
+      <section className="section">
         <h2>What is JSX?</h2>
         <p>
           JSX stands for JavaScript XML. It allows you to write HTML structures in the same file
@@ -67,9 +68,9 @@ const element = React.createElement('h1', null, 'Hello, ', name);`}
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>JSX Rules</h2>
         <ul>
           <li>Must have a single root element (or fragment)</li>
@@ -78,9 +79,9 @@ const element = React.createElement('h1', null, 'Hello, ', name);`}
           <li>JavaScript expressions go in curly braces {}</li>
           <li>Style attributes take an object with camelCase properties</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Try It Yourself</h2>
         <p>
           Practice writing JSX by creating a Greeting component that:
@@ -98,9 +99,9 @@ const element = React.createElement('h1', null, 'Hello, ', name);`}
           height="400px"
           instructions="Create a Greeting component that demonstrates JSX features including conditional rendering, styling, and expression embedding."
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>JSX Expressions</h2>
         <p>
           You can embed any valid JavaScript expression inside JSX using curly braces:
@@ -134,15 +135,15 @@ const element = React.createElement('h1', null, 'Hello, ', name);`}
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Next Steps</h2>
         <p>
           Now that you understand JSX, learn about <Link to="/components">Components</Link> to
           start building reusable UI elements.
         </p>
-      </div>
+      </section>
     </div>
   );
 }

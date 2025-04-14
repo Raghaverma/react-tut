@@ -99,14 +99,15 @@ const App: React.FC = () => {
   ];
 
   return (
-    <div className="content">
-      <h1>TypeScript with React</h1>
-      <p className="intro">
-        TypeScript brings static typing to React, providing better developer experience,
-        catching errors early, and improving code maintainability.
-      </p>
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">TypeScript in React</h1>
+        <p className="page-description">
+          Learn how to use TypeScript with React to write more maintainable and type-safe code.
+        </p>
+      </header>
 
-      <div className="section">
+      <section className="section">
         <h2>TypeScript Basics</h2>
         <p>
           TypeScript adds type annotations to JavaScript, making your code more robust
@@ -149,9 +150,9 @@ const Button: React.FC<ButtonProps> = ({
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Try It Yourself</h2>
         <p>
           Create a TypeScript React component with proper type definitions:
@@ -168,9 +169,9 @@ const Button: React.FC<ButtonProps> = ({
           height="500px"
           instructions="Create a TypeScript React component with proper type definitions and demonstrate its usage."
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Advanced TypeScript Features</h2>
         <p>
           TypeScript offers many advanced features that can help with React development:
@@ -191,19 +192,19 @@ interface ListProps<T> {
 type PartialProps = Partial<ButtonProps>;
 type RequiredProps = Required<ButtonProps>;`}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Test Your Knowledge</h2>
         <Quiz questions={quizQuestions} />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Next Steps</h2>
         <p>
           Learn about <Link to="/testing">testing React components</Link> with TypeScript.
         </p>
-      </div>
+      </section>
     </div>
   );
 }

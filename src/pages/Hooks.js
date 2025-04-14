@@ -64,15 +64,15 @@ function App() {
 }`;
 
   return (
-    <div className="content">
-      <h1>Hooks in React</h1>
-      <p className="intro">
-        Hooks are functions that allow you to "hook into" React state and lifecycle
-        features from function components. They let you use state and other React features
-        without writing a class component.
-      </p>
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">Hooks in React</h1>
+        <p className="page-description">
+          Learn about React Hooks and how they enable state and lifecycle features in functional components.
+        </p>
+      </header>
 
-      <div className="section">
+      <section className="section">
         <h2>Built-in Hooks</h2>
         <p>
           React provides several built-in hooks for managing state, side effects, and more:
@@ -138,9 +138,9 @@ function App() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Custom Hooks</h2>
         <p>
           Build your own hooks to reuse stateful logic between components:
@@ -187,9 +187,9 @@ function App() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Try It Yourself</h2>
         <p>
           Create a custom hook that manages localStorage:
@@ -207,9 +207,9 @@ function App() {
           height="600px"
           instructions="Create a custom hook that synchronizes state with localStorage, allowing components to persist their state across page reloads."
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Hook Rules</h2>
         <ul>
           <li>Only call hooks at the top level of your function</li>
@@ -218,14 +218,14 @@ function App() {
           <li>Hooks can call other hooks</li>
           <li>Use the exhaustive-deps ESLint rule</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Next Steps</h2>
         <p>
           Learn how to optimize your React applications in the <Link to="/performance">Performance</Link> section.
         </p>
-      </div>
+      </section>
     </div>
   );
 }

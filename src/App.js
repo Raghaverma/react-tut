@@ -13,7 +13,7 @@ const Events = lazy(() => import('./pages/Events'));
 const JSX = lazy(() => import('./pages/JSX'));
 const Hooks = lazy(() => import('./pages/Hooks'));
 const Effects = lazy(() => import('./pages/Effects'));
-const Context = lazy(() => import('./pages/Context'));
+const Context = lazy(() => import('./pages/Context.js'));
 const Refs = lazy(() => import('./pages/Refs'));
 const TypeScript = lazy(() => import('./pages/TypeScript'));
 const Testing = lazy(() => import('./pages/Testing'));

@@ -5,15 +5,15 @@ import CodeBlock from '../components/CodeBlock';
 
 function Deployment() {
   return (
-    <div className="content">
-      <h1>Deployment</h1>
-      <p className="intro">
-        Deploying a React application involves building it for production and hosting 
-        it on a server. There are several options available, from simple static hosting 
-        to full-scale cloud platforms.
-      </p>
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">Deployment in React</h1>
+        <p className="page-description">
+          Learn how to deploy your React applications to various hosting platforms.
+        </p>
+      </header>
 
-      <div className="section">
+      <section className="section">
         <h2>Building for Production</h2>
         <p>
           Create a production build using the build script:
@@ -44,9 +44,9 @@ function Deployment() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Static Hosting</h2>
         <p>
           Deploy to static hosting services like Netlify or Vercel:
@@ -81,9 +81,9 @@ function Deployment() {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Environment Variables</h2>
         <p>
           Configure environment variables for different environments:
@@ -108,9 +108,9 @@ REACT_APP_GA_TRACKING_ID=UA-XXXXXXXXX-X`}
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Continuous Deployment</h2>
         <p>
           Set up continuous deployment with GitHub Actions:
@@ -155,9 +155,9 @@ jobs:
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Deployment Best Practices</h2>
         <ul>
           <li>Use environment variables for configuration</li>
@@ -166,9 +166,9 @@ jobs:
           <li>Use HTTPS for security</li>
           <li>Implement caching strategies</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Try It Yourself</h2>
         <p>
           Deploy your React app to:
@@ -178,15 +178,15 @@ jobs:
           <li>A cloud platform</li>
           <li>Your own server</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Next Steps</h2>
         <p>
           Congratulations! You've completed the React tutorial. Continue learning by 
           exploring the <Link to="/">Home</Link> page for more resources.
         </p>
-      </div>
+      </section>
     </div>
   );
 }

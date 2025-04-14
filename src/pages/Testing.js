@@ -5,14 +5,15 @@ import CodeBlock from '../components/CodeBlock';
 
 function Testing() {
   return (
-    <div className="content">
-      <h1>Testing</h1>
-      <p className="intro">
-        Testing is crucial for building reliable React applications. React provides 
-        tools and libraries to help you write effective tests for your components.
-      </p>
+    <div className="page-container">
+      <header className="page-header">
+        <h1 className="page-title">Testing in React</h1>
+        <p className="page-description">
+          Learn how to write tests for your React components using Jest and React Testing Library.
+        </p>
+      </header>
 
-      <div className="section">
+      <section className="section">
         <h2>Component Testing</h2>
         <p>
           Test React components using React Testing Library:
@@ -55,9 +56,9 @@ test('calls onClick handler when clicked', () => {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Hook Testing</h2>
         <p>
           Test custom hooks using React Hooks Testing Library:
@@ -107,9 +108,9 @@ test('resets counter', () => {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Async Testing</h2>
         <p>
           Test asynchronous operations in your components:
@@ -153,9 +154,9 @@ test('loads and displays data', async () => {
             }
           ]}
         />
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Testing Best Practices</h2>
         <ul>
           <li>Test component behavior, not implementation</li>
@@ -164,9 +165,9 @@ test('loads and displays data', async () => {
           <li>Test edge cases and error states</li>
           <li>Keep tests focused and maintainable</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Try It Yourself</h2>
         <p>
           Write tests for a component that:
@@ -176,15 +177,15 @@ test('loads and displays data', async () => {
           <li>Makes API calls</li>
           <li>Manages state with hooks</li>
         </ul>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="section">
         <h2>Next Steps</h2>
         <p>
           Learn about React 
           <Link to="/deployment"> Deployment</Link> to share your app with the world.
         </p>
-      </div>
+      </section>
     </div>
   );
 }
